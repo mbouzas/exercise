@@ -1,0 +1,57 @@
+<html>
+<head>
+	<script type="text/javascript" src="jquery.js"></script>
+	<style>
+	
+	body {
+		font-family: Courier New;
+	}
+	</style>
+</head>
+<body>
+	<h1>Shortest Path</h1>
+	<p>
+		<div id="grid"></div>
+	</p>
+	<p>
+		<button id="reset">Reset</button>
+		<button id="display">Display shortest path</button>
+	</p>
+	<p id="length">
+	</p>
+</body>
+</html>
+<script>
+
+var display = function(data) {
+  var content = '';
+  data.forEach(function(row) {
+	  row.forEach(function(col) {
+		  content += col + ' ';
+	  });
+	  content += '<br>';
+	});
+  
+  $('#grid').html(content);
+}
+
+$('#reset').on('click', function() {
+
+	$.get( "/reset", function( data ) {
+	  display(data);
+	  $('#length').html('');
+	});
+});
+
+$('#display').on('click', function() {
+
+	$.get( "/display", function( data ) {
+	  display(data);
+	});
+
+	$.get( "/shortest", function( data ) {
+		$('#length').html("The length of the shortest path is " + data + " (expected is 11)");
+	});
+});
+
+</script>
