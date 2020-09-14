@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class StaticController {
-	
+
+
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public String index() {
 	    return "index.html";
